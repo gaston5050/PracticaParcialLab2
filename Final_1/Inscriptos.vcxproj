@@ -131,12 +131,16 @@
   <ItemGroup>
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="EstudiantesArchivo.h" />
+    <ClInclude Include="Examen.h" />
+    <ClInclude Include="ExamenesFinales.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="Soluciones.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="EstudiantesArchivo.cpp" />
+    <ClCompile Include="Examen.cpp" />
+    <ClCompile Include="ExamenesFinales.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Soluciones.cpp" />

@@ -27,6 +27,12 @@
     <ClInclude Include="Soluciones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ExamenesFinales.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Examen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Estudiante.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Soluciones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExamenesFinales.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Examen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
