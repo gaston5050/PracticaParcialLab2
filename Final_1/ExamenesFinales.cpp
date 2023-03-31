@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "ExamenesFinales.h"
 #include "Examen.h"
 
@@ -14,11 +15,14 @@ ExamenesFinales::ExamenesFinales(){
 }
 
 void ExamenesFinales::cargar(){
-	std::cout <<"ID: "<< getId()<<std::endl;
+	std::string obs;
+	std::cout <<"ID: "<< getId()+1<<std::endl;
 	std::cout << "INGRESE LEGAJO" <<std::endl;
 	std::cin >> _legajo;
 	std::cout << "INGRESE OBSERVACIONES"<< std::endl;
-	std::cin >> _observaciones;
+	std::cin >> obs;
+	setObservaciones(obs);
+	//std::cin >> _observaciones;
 	std::cout << "INGRESE LEGAJO" <<std::endl;
 	std::cin >> _legajo;
 	
@@ -41,7 +45,11 @@ void ExamenesFinales::setNota(float nota){}
 
 int ExamenesFinales::getId() { return _id; }
 int ExamenesFinales::getLegajo() { return _legajo; }
-std::string ExamenesFinales::getObservaciones() { return _observaciones; }
+std::string ExamenesFinales::getObservaciones() { 
+	
+	std::string obs(_observaciones)
+	return obs;
+}
 Fecha ExamenesFinales::getFecha() { return _fecha; }
 int ExamenesFinales::getIdMateria() { return _idMateria; }
 float ExamenesFinales::getNota() { return _nota; }
