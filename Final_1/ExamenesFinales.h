@@ -30,6 +30,9 @@ public:
 	int getIdMateria();
 	float getNota();
 
+	void mostrar();
+
+
 
 
 
@@ -38,3 +41,4 @@ public:
 
 };
 
+bool exiteEsteLegajo(int legajo);

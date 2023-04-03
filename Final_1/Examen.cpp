@@ -13,6 +13,22 @@ bool Examen::crearExamenFinal(ExamenesFinales reg){
 
 }
 
+ExamenesFinales Examen::leerArchivoExamenes(int pos) {
+	ExamenesFinales reg;
+
+	FILE* p = fopen("finales.dat", "rb");
+	if (p == nullptr) exit(1552);
+	fseek(p, sizeof(ExamenesFinales) * pos, SEEK_SET);
+	fread(&reg, sizeof(ExamenesFinales), 1, p);
+	fclose(p);
+	return reg;
+
+
+
+
+
+}
+
 int Examen::cantidadExamenes() {
 
 	FILE* p = fopen("finales.dat", "rb");

@@ -1,13 +1,21 @@
 #include <iostream>
 #include "Soluciones.h"
 #include "ExamenesFinales.h"
+#include "EstudiantesArchivo.h"
 void Soluciones::Punto1(){
-
+	
+	EstudiantesArchivo reg;
+	
+	
+	
 	ExamenesFinales aux;
 
 	aux.cargar();
 	std::cout << std::endl;
-	std::cout<<aux.getObservaciones();
+	
+	aux.mostrar();
+
+
 }
 
 void Soluciones::Punto2(){}

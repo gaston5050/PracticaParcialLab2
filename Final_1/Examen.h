@@ -5,5 +5,13 @@ class Examen
 public:
 	bool crearExamenFinal(ExamenesFinales reg);
 	int cantidadExamenes();
+	ExamenesFinales leerArchivoExamenes(int pos);
+
+
+
 };
+
+
+
+
 
