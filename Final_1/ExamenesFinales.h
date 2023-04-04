@@ -42,3 +42,4 @@ public:
 };
 
 bool exiteEsteLegajo(int legajo);
+bool yaAprobo(int legajo, int materia);
