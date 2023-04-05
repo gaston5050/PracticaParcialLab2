@@ -20,7 +20,7 @@ ExamenesFinales::ExamenesFinales() {
 
 void ExamenesFinales::cargar() {
 	Examen aux;
-	aux.leerArchivoExamenes(0).getLegajo();
+	
 
 	system("pause");
 	std::string obs;
@@ -29,7 +29,7 @@ void ExamenesFinales::cargar() {
 	std::cout << "INGRESE LEGAJO" << std::endl;
 	std::cin >> _legajo;
 	while (!exiteEsteLegajo(_legajo)) {
-		std::cout << "INGRESE LEGAJO" << std::endl;
+		std::cout << "INGRESE UN LEGAJO EXISTENTE" << std::endl;
 		std::cin >> _legajo;
 
 	}
@@ -44,7 +44,7 @@ void ExamenesFinales::cargar() {
 	std::cout << "INGRESE IDMATERIA" << std::endl;
 	std::cin >> _idMateria;
 	while (_idMateria < 1 || _idMateria >11) {
-		std::cout << "INGRESE IDMATERIA" << std::endl;
+		std::cout << "INGRESE UN IDMATERIA EXISTENTE" << std::endl;
 		std::cin >> _idMateria;
 
 	}
@@ -133,7 +133,7 @@ bool yaAprobo(int legajo, int materia) {
 	if (cantidad > 0) {
 
 		for (int i = 0; i < cantidad; i++) {
-			if (reg.leerArchivoExamenes(i).getLegajo() == legajo && reg.leerArchivoExamenes(i).getIdMateria() == materia) {
+			if (reg.leerArchivoExamenes(i).getLegajo() == legajo && reg.leerArchivoExamenes(i).getIdMateria() == materia && reg.leerArchivoExamenes(i).getNota()>=6) {
 				std::cout << "ya aprobo" << std::endl;
 
 				return false;

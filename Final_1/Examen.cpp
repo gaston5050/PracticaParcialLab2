@@ -41,3 +41,15 @@ int Examen::cantidadExamenes() {
 	return cantidad;
 
 }
+
+
+std::string Examen::alumnosAprobados() {
+	
+	const int cantidad = cantidadExamenes();
+	//	bool aprobadas[cantidad] = 0;
+	bool * aprobadas = new bool[cantidad];
+		
+
+
+	return "x";
+}
