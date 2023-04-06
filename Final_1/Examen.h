@@ -6,7 +6,7 @@ public:
 	bool crearExamenFinal(ExamenesFinales reg);
 	int cantidadExamenes();
 	ExamenesFinales leerArchivoExamenes(int pos);
-	std::string alumnosAprobados();
+	void alumnosAprobados();
 
 
 

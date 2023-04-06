@@ -10,15 +10,18 @@ void Soluciones::Punto1(){
 
 	
 	ExamenesFinales aux;
+	Examen auxi;
+	auxi.alumnosAprobados();
+
 	/*Examen reg2;
 	std::cout<<reg2.leerArchivoExamenes(0).getLegajo()<<std::endl;
 	system("pause");
-	*/
-
+	
 	aux.cargar();
 	std::cout << std::endl;
 	
 	aux.mostrar();
+	*/
 
 
 }

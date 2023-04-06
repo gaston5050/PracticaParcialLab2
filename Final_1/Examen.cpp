@@ -1,5 +1,6 @@
+#include <iostream>
 #include "Examen.h"
-
+#include "EstudiantesArchivo.h"
 bool Examen::crearExamenFinal(ExamenesFinales reg){
 
 
@@ -43,13 +44,45 @@ int Examen::cantidadExamenes() {
 }
 
 
-std::string Examen::alumnosAprobados() {
+void Examen::alumnosAprobados() {
+
+	EstudiantesArchivo reg;
+	Examen aux;
+	int cantidadExa = cantidadExamenes();
+
+
+	bool materias[11]{};
+	int contador; 
+	int cantidadAlumnos = reg.getCantidad();
+
+	for (int i = 0; i < cantidadAlumnos; i++) {
+		contador = 0;
+			
+		int legajoTestigo = reg.leer(i).getLegajo();
 	
-	const int cantidad = cantidadExamenes();
-	//	bool aprobadas[cantidad] = 0;
-	bool * aprobadas = new bool[cantidad];
 		
+		for (int j = 0; j < cantidadExa; j++) {
+			{
 
+				if (aux.leerArchivoExamenes(j).getLegajo() == legajoTestigo && aux.leerArchivoExamenes(i).getNota()>=6) {
 
-	return "x";
+					materias[aux.leerArchivoExamenes(j).getIdMateria() - 1] = true;
+				}
+
+			}
+
+		}
+		for (int j = 0; j < 11; j++) {
+			std::cout << "LEGAJO: " << 
+			if (materias[j] == true){
+				contador++;
+
+			}
+		}
+
+		if (contador == 3) {
+			std::cout << reg.leer(i).toString() << std::endl;
+		}
+	}
+
 }
