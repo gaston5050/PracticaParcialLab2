@@ -9,9 +9,29 @@ void Soluciones::Punto1(){
 	
 
 	
-	ExamenesFinales aux;
 	Examen auxi;
-	auxi.alumnosAprobados();
+
+
+
+	
+	
+	/*
+	for(int i = 0; i<14; i++){
+		auxi.leerArchivoExamenes(i).mostrar();
+	std::cout << std::endl;
+	
+	//ExamenesFinales aux;
+
+	//*	aux.cargar();
+//	auxi.crearExamenFinal(aux);
+
+}
+
+	*/
+
+
+
+   auxi.alumnosAprobados();
 
 	/*Examen reg2;
 	std::cout<<reg2.leerArchivoExamenes(0).getLegajo()<<std::endl;

@@ -29,7 +29,7 @@ public:
 	Fecha getFecha();
 	int getIdMateria();
 	float getNota();
-
+	std::string toString();
 	void mostrar();
 
 

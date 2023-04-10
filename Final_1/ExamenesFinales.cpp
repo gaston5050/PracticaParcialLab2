@@ -7,7 +7,7 @@
 
 ExamenesFinales::ExamenesFinales() {
 	Examen reg;
-	setId(reg.cantidadExamenes());
+	setId(reg.cantidadExamenes()+1);
 	setLegajo(0);
 	setObservaciones("");
 	setFecha(0, 0, 0);
@@ -19,12 +19,12 @@ ExamenesFinales::ExamenesFinales() {
 
 
 void ExamenesFinales::cargar() {
-	Examen aux;
+	
 	
 
-	system("pause");
+	
 	std::string obs;
-	std::cout << "ID: " << getId() + 1 << std::endl;
+	std::cout << "ID: " << getId() << std::endl;
 
 	std::cout << "INGRESE LEGAJO" << std::endl;
 	std::cin >> _legajo;
@@ -38,7 +38,7 @@ void ExamenesFinales::cargar() {
 	std::cout << "INGRESE OBSERVACIONES" << std::endl;
 	std::cin.ignore();
 	std::getline(std::cin, obs);
-	std::cout << "obs " << obs.length() << std::endl;
+	
 	setObservaciones(obs);
 	//std::cout << "vectoriono " << strlen(_observaciones) <<std::endl;
 	std::cout << "INGRESE IDMATERIA" << std::endl;
@@ -70,7 +70,7 @@ void ExamenesFinales::cargar() {
 
 void ExamenesFinales::mostrar() {
 
-	std::cout << "ID: " << getId() + 1 << std::endl;
+	std::cout << "ID: " << getId() << std::endl;
 	std::cout << "LEGAJO: " << getLegajo() << std::endl;
 
 	std::cout << "OBSERVACIONES: " << getObservaciones() << std::endl;
@@ -150,3 +150,49 @@ bool yaAprobo(int legajo, int materia) {
 	}
 
 }
+
+
+std::string ExamenesFinales::toString() {
+
+	std::string datos;
+	datos = "ID " + std::to_string(_id) + " , " + std::to_string(_legajo) + " " + _observaciones +" " + std::to_string(_idMateria) + " " + std::to_string(_nota);
+
+	return datos;
+
+}
+
+
+/*datos
+1001
+n
+1
+7
+1001
+s
+2
+7
+1001
+m
+3
+6
+1002
+n
+1
+7
+1002
+b
+2
+7
+1002
+b
+3
+7
+1003
+x
+1
+0
+1003
+d
+2
+3
+*/

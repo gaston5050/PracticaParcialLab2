@@ -51,12 +51,12 @@ void Examen::alumnosAprobados() {
 	int cantidadExa = cantidadExamenes();
 
 
-	bool materias[11]{};
-	int contador; 
+	int contador= 0; 
 	int cantidadAlumnos = reg.getCantidad();
+	int j = 0;
 
 	for (int i = 0; i < cantidadAlumnos; i++) {
-		contador = 0;
+	bool materias[3]{};
 			
 		int legajoTestigo = reg.leer(i).getLegajo();
 	
@@ -68,21 +68,25 @@ void Examen::alumnosAprobados() {
 
 					materias[aux.leerArchivoExamenes(j).getIdMateria() - 1] = true;
 				}
+			
 
 			}
 
 		}
-		for (int j = 0; j < 11; j++) {
-			std::cout << "LEGAJO: " << 
+		for (int j = 0; j < 3; j++) {
+			
 			if (materias[j] == true){
 				contador++;
+				materias[j] == false;
 
 			}
 		}
 
-		if (contador == 3) {
+		if (contador == 3 ) {
+
 			std::cout << reg.leer(i).toString() << std::endl;
 		}
+		contador = 0;
 	}
 
 }
