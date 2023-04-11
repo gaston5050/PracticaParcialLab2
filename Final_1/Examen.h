@@ -7,7 +7,7 @@ public:
 	int cantidadExamenes();
 	ExamenesFinales leerArchivoExamenes(int pos);
 	void alumnosAprobados();
-
+	void dificultadExamen( int anio);
 
 
 };

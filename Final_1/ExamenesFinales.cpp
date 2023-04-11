@@ -163,6 +163,18 @@ std::string ExamenesFinales::toString() {
 
 
 /*datos
+1000
+c
+1
+10
+1000
+v
+2
+8
+1000
+b
+3
+9
 1001
 n
 1

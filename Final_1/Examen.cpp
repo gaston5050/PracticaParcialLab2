@@ -82,11 +82,41 @@ void Examen::alumnosAprobados() {
 			}
 		}
 
-		if (contador == 3 ) {
+		if (contador == 3) {
 
 			std::cout << reg.leer(i).toString() << std::endl;
 		}
 		contador = 0;
 	}
+
+}
+
+
+void Examen::dificultadExamen(int anio) {
+
+	int cont, aprobados, desaprobados;
+	for (int i = 0; i < 3; i++) {
+		cont = aprobados = desaprobados = 0;
+		for (int j = 0; j < cantidadExamenes(); j++) {
+
+			if (leerArchivoExamenes(j).getIdMateria() == i+1) {
+				cont++;
+				if (leerArchivoExamenes(j).getNota() >= 6) { aprobados++; }
+				else { desaprobados++; }
+			}
+
+		}
+
+			std::cout << " MATERIA: " << i+1 << std::endl;
+			std::cout << "PORCENTAJE APROBADOS: " << (aprobados * 100) / (float)cont <<std::endl;
+			std::cout << "PORCENTAJE DESAPROBADOS: " << (desaprobados * 100) / (float)cont << std::endl;
+
+
+
+
+
+	}
+
+
 
 }
