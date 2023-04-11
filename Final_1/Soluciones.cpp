@@ -15,19 +15,19 @@ void Soluciones::Punto1(){
 
 	
 	
-	/*
-	for(int i = 0; i<14; i++){
-		auxi.leerArchivoExamenes(i).mostrar();
-	std::cout << std::endl;
 	
-	//ExamenesFinales aux;
+	for (int i = 0; i < 9; i++) {
+	//	auxi.leerArchivoExamenes(i).mostrar();
+	//std::cout << std::endl;
+	
+	ExamenesFinales aux;
 
-	//*	aux.cargar();
-//	auxi.crearExamenFinal(aux);
+	aux.cargar();	
+
 
 }
 
-	*/
+	
 
 
 
