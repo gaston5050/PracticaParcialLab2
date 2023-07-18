@@ -133,11 +133,13 @@
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="Lab2_Actividades Semana 1.cpp" />
     <ClCompile Include="ListaDeTareas.cpp" />
+    <ClCompile Include="Soluciones.cpp" />
     <ClCompile Include="Tarea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="ListaDeTareas.h" />
+    <ClInclude Include="Soluciones.h" />
     <ClInclude Include="Tarea.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

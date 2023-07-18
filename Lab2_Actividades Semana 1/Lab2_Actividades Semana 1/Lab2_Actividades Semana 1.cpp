@@ -2,10 +2,15 @@
 //
 
 #include <iostream>
-#include "Fecha.h"
+#include "Soluciones.h"
 
 int main()
 {
+
+	Soluciones aux;
+		aux.punto1();
+	
+
    
 }
 

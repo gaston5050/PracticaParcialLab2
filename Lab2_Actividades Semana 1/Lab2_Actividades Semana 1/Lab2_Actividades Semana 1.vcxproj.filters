@@ -27,6 +27,9 @@
     <ClCompile Include="Fecha.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Soluciones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ListaDeTareas.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Fecha.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Soluciones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

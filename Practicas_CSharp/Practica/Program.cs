@@ -6,6 +6,23 @@ namespace Practica
     {
         static void Main(string[] args)
         {
+
+
+            int[] vectr = new int [3];
+            vectr[0] = 1;
+            vectr[1] = 2;
+            vectr[2] = 8;
+
+              for(int i = 0; i<3; i++){
+
+                 Console.WriteLine(vectr[i]);
+
+              }
+        
+
+
+
+          /*
           int num =1, cont =0, acum =0;
 
           while(num>0){
@@ -25,8 +42,6 @@ namespace Practica
 
           }
 
-
-/*
           Console.WriteLine("Escriba un numero: ");
           num = int.Parse(Console.ReadLine());
           Console.WriteLine($"Este es el numero:  {num}");

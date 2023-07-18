@@ -10,7 +10,9 @@ private:
 	Fecha _fechaLimite;
 	bool _estado;
 public:
-
+	Tarea();
+	void cargar();
+	void mostrar();
 	void setIdTarea(int idTarea);
 	void setDescripcionTarea(std::string descripcion);
 	void setDificultad(std::string dificultad);
