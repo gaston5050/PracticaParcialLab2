@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-   public class Agente
+    public class Agente
     {
 
         public int IdAgente { get; set; }
-        public string Nombre { get; set; }
-        public string UrlImagen { get; set; }
+        public string NombreAgente { get; set; }
 
-        public Provincia provincia { get; set; }
+
 
     }
 }

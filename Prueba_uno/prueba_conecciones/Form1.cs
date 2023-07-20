@@ -33,14 +33,45 @@ namespace prueba_conecciones
 
         {
 
-            Agente seleccionado = new Agente();
+            if (dgvTablaAgentes.CurrentRow != null)
+            {
+
+            Agente Seleccionado = new Agente();
+
+            Seleccionado = (Agente)dgvTablaAgentes.CurrentRow.DataBoundItem;
+
+                CargarImagen(Seleccionado.UrlImagen);
+
+            }
 
 
-            seleccionado = (Agente)dgvTablaAgentes.CurrentRow.DataBoundItem;
+        }
 
-            pbFoto.Load(seleccionado.UrlImagen);
+        public void CargarImagen(string urlImagen)
+        {
+            try
+            {
+
+            pbFoto.Load(urlImagen);
+
+            }
+            catch (Exception)
+            {
+
+                pbFoto.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
 
 
+            }
+
+
+
+        }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            Alta ventana = new Alta();
+
+            ventana.ShowDialog();
         }
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B68A29A-D8BD-4B54-A2DF-8BCAAB2CFA6F}</ProjectGuid>
+    <ProjectGuid>{ED9FB788-126A-4D44-AE36-43E2171B9643}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>prueba_conecciones</RootNamespace>
-    <AssemblyName>prueba_conecciones</AssemblyName>
+    <RootNamespace>Conexiones</RootNamespace>
+    <AssemblyName>Conexiones</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Alta.Designer.cs">
-      <DependentUpon>Alta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,9 +54,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Alta.resx">
-      <DependentUpon>Alta.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,12 +80,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
+      <Project>{db0f7546-cd0b-4224-8690-20007f7f152d}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{f9a8b8ec-700b-483d-90c6-b7446ad9b21c}</Project>
+      <Project>{3a55ddda-2243-441c-baa4-d82e99f4d2a8}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
-      <Project>{28a1f0a3-1daa-40fc-8def-04dbad91303f}</Project>
+      <Project>{b34de097-672d-4a4c-8d89-86d43fef6151}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
