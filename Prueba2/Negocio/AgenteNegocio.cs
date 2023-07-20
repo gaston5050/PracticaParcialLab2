@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
 using Dominio;
+using Negocio;
 
 
 
@@ -19,10 +21,19 @@ namespace Negocio
             try
             {
                 acceso.setConsulta("select idagente, nombres from agentes");
-                acceso.
+                acceso.ejecutarLectura();
 
 
+                while (acceso.Lector.Read())
+                {
+                    Agente aux = new Agente();
 
+                    aux.NombreAgente = (string)acceso.Lector["nombres"];
+                    aux.IdAgente = (int)acceso.Lector["idagente"];
+                    listado.Add(aux);
+
+
+                }
 
 
 
@@ -30,10 +41,10 @@ namespace Negocio
 
             return listado;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
 

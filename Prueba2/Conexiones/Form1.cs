@@ -22,7 +22,8 @@ namespace Conexiones
 
         private void Form1_Load(object sender, EventArgs e)
         {
-         
+            AgenteNegocio negocio = new AgenteNegocio();
+            dgvAgentes.DataSource = negocio.listar();
 
 
 
