@@ -28,5 +28,19 @@ namespace Conexiones
 
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            AccesoDatosManager reg = new AccesoDatosManager();
+            int num = Int32.Parse(txtEliminar.Text);
+
+            reg.setConsulta($"delete  from agentes where idAgente = {num}");
+           // reg.AbrirConexion();
+            reg.ejecutarAccion();
+             reg.CerrarConexion();
+
+
+
+        }
     }
 }

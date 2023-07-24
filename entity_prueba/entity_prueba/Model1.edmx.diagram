@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d31227fc32344650ac1ba6d668524623" Name="Diagram1">
+        <EntityTypeShape EntityType="AgenciaTransitoModel.Agentes" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.Localidades" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.MediosPago" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.Multas" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.Pagos" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.Provincias" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.TipoInfracciones" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgenciaTransitoModel.VW_multass" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Multas__IdAgente__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Localidad__IDPro__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Multas__IDLocali__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Pagos__IDMedioPa__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Multas__IdTipoIn__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="AgenciaTransitoModel.FK__Pagos__IDMulta__35BCFE0A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -45,6 +45,24 @@ namespace AccesoDatos
 
 
 
+
+        public void CerrarConexion()
+        {
+            try
+            {
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+
+        }
+
         public void AbrirConexion()
         {
             try
@@ -78,6 +96,22 @@ namespace AccesoDatos
             }
 
 
+        }
+
+        public void ejecutarAccion()
+        {
+          
+            comando.Connection = conexion;
+            try
+            {
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         /*
         public void seterConsulta( string storedProcedure)

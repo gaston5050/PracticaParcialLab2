@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AgenciaTransitoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agentes">
+          <Key>
+            <PropertyRef Name="IdAgente" />
+          </Key>
+          <Property Name="IdAgente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Legajo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="FechaIngreso" Type="date" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Celular" Type="varchar" MaxLength="20" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="urlImagen" Type="varchar" MaxLength="300" />
+          <Property Name="idProvincia" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Localidad" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IDProvincia" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MediosPago">
+          <Key>
+            <PropertyRef Name="IDMedioPago" />
+          </Key>
+          <Property Name="IDMedioPago" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MedioPagoElectronico" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Multas">
+          <Key>
+            <PropertyRef Name="IdMulta" />
+          </Key>
+          <Property Name="IdMulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoInfraccion" Type="int" Nullable="false" />
+          <Property Name="IDLocalidad" Type="int" Nullable="false" />
+          <Property Name="IdAgente" Type="int" />
+          <Property Name="Patente" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Monto" Type="money" Nullable="false" />
+          <Property Name="Pagada" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IDPago" />
+          </Key>
+          <Property Name="IDPago" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMulta" Type="int" Nullable="false" />
+          <Property Name="Importe" Type="money" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IDMedioPago" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoInfracciones">
+          <Key>
+            <PropertyRef Name="IdTipoInfraccion" />
+          </Key>
+          <Property Name="IdTipoInfraccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="ImporteReferencia" Type="money" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AgenciaTransito.dbo.VW_multass' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_multass">
+          <Key>
+            <PropertyRef Name="legajo" />
+            <PropertyRef Name="APELLIDO_AGENTE" />
+            <PropertyRef Name="NOMBRES_AGENTE" />
+            <PropertyRef Name="LOCALIDAD" />
+            <PropertyRef Name="patente" />
+            <PropertyRef Name="FECHA" />
+            <PropertyRef Name="MONTO" />
+          </Key>
+          <Property Name="legajo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="antiguedad" Type="int" />
+          <Property Name="APELLIDO_AGENTE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRES_AGENTE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOCALIDAD" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="patente" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="MONTO" Type="money" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Localidad__IDPro__267ABA7A">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidades">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multas__IdAgente__300424B4">
+          <End Role="Agentes" Type="Self.Agentes" Multiplicity="0..1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agentes">
+              <PropertyRef Name="IdAgente" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IdAgente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multas__IDLocali__2F10007B">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multas__IdTipoIn__2E1BDC42">
+          <End Role="TipoInfracciones" Type="Self.TipoInfracciones" Multiplicity="1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInfracciones">
+              <PropertyRef Name="IdTipoInfraccion" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IdTipoInfraccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagos__IDMedioPa__37A5467C">
+          <End Role="MediosPago" Type="Self.MediosPago" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MediosPago">
+              <PropertyRef Name="IDMedioPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IDMedioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagos__IDMulta__35BCFE0A">
+          <End Role="Multas" Type="Self.Multas" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Multas">
+              <PropertyRef Name="IdMulta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IDMulta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_multas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_MULTASNOPAGAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_multasPagas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_totalAbonado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_totalMultas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_totalMultasActual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_totalPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_agregarMulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idTipoInfraccion" Type="int" Mode="In" />
+          <Parameter Name="idlocalidad" Type="int" Mode="In" />
+          <Parameter Name="idagente" Type="int" Mode="In" />
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+          <Parameter Name="monto" Type="money" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_descalificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idfotografia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_multasVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="patente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NOMBREAGENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAGENTE" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_procesarPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_procesarPagos2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SALUDITO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="AgenciaTransitoModelStoreContainer">
+          <EntitySet Name="Agentes" EntityType="Self.Agentes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MediosPago" EntityType="Self.MediosPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Multas" EntityType="Self.Multas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoInfracciones" EntityType="Self.TipoInfracciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_multass" EntityType="Self.VW_multass" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_multass].[legajo] AS [legajo], 
+    [VW_multass].[antiguedad] AS [antiguedad], 
+    [VW_multass].[APELLIDO_AGENTE] AS [APELLIDO_AGENTE], 
+    [VW_multass].[NOMBRES_AGENTE] AS [NOMBRES_AGENTE], 
+    [VW_multass].[LOCALIDAD] AS [LOCALIDAD], 
+    [VW_multass].[patente] AS [patente], 
+    [VW_multass].[FECHA] AS [FECHA], 
+    [VW_multass].[MONTO] AS [MONTO], 
+    [VW_multass].[Descripcion] AS [Descripcion]
+    FROM [dbo].[VW_multass] AS [VW_multass]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Localidad__IDPro__267ABA7A" Association="Self.FK__Localidad__IDPro__267ABA7A">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidades" EntitySet="Localidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multas__IdAgente__300424B4" Association="Self.FK__Multas__IdAgente__300424B4">
+            <End Role="Agentes" EntitySet="Agentes" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multas__IDLocali__2F10007B" Association="Self.FK__Multas__IDLocali__2F10007B">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multas__IdTipoIn__2E1BDC42" Association="Self.FK__Multas__IdTipoIn__2E1BDC42">
+            <End Role="TipoInfracciones" EntitySet="TipoInfracciones" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagos__IDMedioPa__37A5467C" Association="Self.FK__Pagos__IDMedioPa__37A5467C">
+            <End Role="MediosPago" EntitySet="MediosPago" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagos__IDMulta__35BCFE0A" Association="Self.FK__Pagos__IDMulta__35BCFE0A">
+            <End Role="Multas" EntitySet="Multas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgenciaTransitoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agentes">
+          <Key>
+            <PropertyRef Name="IdAgente" />
+          </Key>
+          <Property Name="IdAgente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Legajo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="urlImagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="idProvincia" Type="Int16" />
+          <NavigationProperty Name="Multas" Relationship="Self.FK__Multas__IdAgente__300424B4" FromRole="Agentes" ToRole="Multas" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Localidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDProvincia" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Provincias" Relationship="Self.FK__Localidad__IDPro__267ABA7A" FromRole="Localidades" ToRole="Provincias" />
+          <NavigationProperty Name="Multas" Relationship="Self.FK__Multas__IDLocali__2F10007B" FromRole="Localidades" ToRole="Multas" />
+        </EntityType>
+        <EntityType Name="MediosPago">
+          <Key>
+            <PropertyRef Name="IDMedioPago" />
+          </Key>
+          <Property Name="IDMedioPago" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MedioPagoElectronico" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__IDMedioPa__37A5467C" FromRole="MediosPago" ToRole="Pagos" />
+        </EntityType>
+        <EntityType Name="Multas">
+          <Key>
+            <PropertyRef Name="IdMulta" />
+          </Key>
+          <Property Name="IdMulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoInfraccion" Type="Int32" Nullable="false" />
+          <Property Name="IDLocalidad" Type="Int32" Nullable="false" />
+          <Property Name="IdAgente" Type="Int32" />
+          <Property Name="Patente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Monto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Pagada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agentes" Relationship="Self.FK__Multas__IdAgente__300424B4" FromRole="Multas" ToRole="Agentes" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK__Multas__IDLocali__2F10007B" FromRole="Multas" ToRole="Localidades" />
+          <NavigationProperty Name="TipoInfracciones" Relationship="Self.FK__Multas__IdTipoIn__2E1BDC42" FromRole="Multas" ToRole="TipoInfracciones" />
+          <NavigationProperty Name="Pagos" Relationship="Self.FK__Pagos__IDMulta__35BCFE0A" FromRole="Multas" ToRole="Pagos" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IDPago" />
+          </Key>
+          <Property Name="IDPago" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMulta" Type="Int32" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDMedioPago" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="MediosPago" Relationship="Self.FK__Pagos__IDMedioPa__37A5467C" FromRole="Pagos" ToRole="MediosPago" />
+          <NavigationProperty Name="Multas" Relationship="Self.FK__Pagos__IDMulta__35BCFE0A" FromRole="Pagos" ToRole="Multas" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK__Localidad__IDPro__267ABA7A" FromRole="Provincias" ToRole="Localidades" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoInfracciones">
+          <Key>
+            <PropertyRef Name="IdTipoInfraccion" />
+          </Key>
+          <Property Name="IdTipoInfraccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ImporteReferencia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Multas" Relationship="Self.FK__Multas__IdTipoIn__2E1BDC42" FromRole="TipoInfracciones" ToRole="Multas" />
+        </EntityType>
+        <EntityType Name="VW_multass">
+          <Key>
+            <PropertyRef Name="legajo" />
+            <PropertyRef Name="APELLIDO_AGENTE" />
+            <PropertyRef Name="NOMBRES_AGENTE" />
+            <PropertyRef Name="LOCALIDAD" />
+            <PropertyRef Name="patente" />
+            <PropertyRef Name="FECHA" />
+            <PropertyRef Name="MONTO" />
+          </Key>
+          <Property Name="legajo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="antiguedad" Type="Int32" />
+          <Property Name="APELLIDO_AGENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRES_AGENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCALIDAD" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MONTO" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Multas__IdAgente__300424B4">
+          <End Role="Agentes" Type="Self.Agentes" Multiplicity="0..1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agentes">
+              <PropertyRef Name="IdAgente" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IdAgente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__IDPro__267ABA7A">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidades">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multas__IDLocali__2F10007B">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagos__IDMedioPa__37A5467C">
+          <End Role="MediosPago" Type="Self.MediosPago" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MediosPago">
+              <PropertyRef Name="IDMedioPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IDMedioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Multas__IdTipoIn__2E1BDC42">
+          <End Role="TipoInfracciones" Type="Self.TipoInfracciones" Multiplicity="1" />
+          <End Role="Multas" Type="Self.Multas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInfracciones">
+              <PropertyRef Name="IdTipoInfraccion" />
+            </Principal>
+            <Dependent Role="Multas">
+              <PropertyRef Name="IdTipoInfraccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagos__IDMulta__35BCFE0A">
+          <End Role="Multas" Type="Self.Multas" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Multas">
+              <PropertyRef Name="IdMulta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="IDMulta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgenciaTransitoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agentes" EntityType="Self.Agentes" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" />
+          <EntitySet Name="MediosPago" EntityType="Self.MediosPago" />
+          <EntitySet Name="Multas" EntityType="Self.Multas" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoInfracciones" EntityType="Self.TipoInfracciones" />
+          <EntitySet Name="VW_multass" EntityType="Self.VW_multass" />
+          <AssociationSet Name="FK__Multas__IdAgente__300424B4" Association="Self.FK__Multas__IdAgente__300424B4">
+            <End Role="Agentes" EntitySet="Agentes" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__IDPro__267ABA7A" Association="Self.FK__Localidad__IDPro__267ABA7A">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Localidades" EntitySet="Localidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multas__IDLocali__2F10007B" Association="Self.FK__Multas__IDLocali__2F10007B">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagos__IDMedioPa__37A5467C" Association="Self.FK__Pagos__IDMedioPa__37A5467C">
+            <End Role="MediosPago" EntitySet="MediosPago" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Multas__IdTipoIn__2E1BDC42" Association="Self.FK__Multas__IdTipoIn__2E1BDC42">
+            <End Role="TipoInfracciones" EntitySet="TipoInfracciones" />
+            <End Role="Multas" EntitySet="Multas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagos__IDMulta__35BCFE0A" Association="Self.FK__Pagos__IDMulta__35BCFE0A">
+            <End Role="Multas" EntitySet="Multas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_agregarMulta">
+            <Parameter Name="idTipoInfraccion" Mode="In" Type="Int32" />
+            <Parameter Name="idlocalidad" Mode="In" Type="Int32" />
+            <Parameter Name="idagente" Mode="In" Type="Int32" />
+            <Parameter Name="patente" Mode="In" Type="String" />
+            <Parameter Name="monto" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_descalificar">
+            <Parameter Name="idfotografia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AgenciaTransitoModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AgenciaTransitoModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_multasVehiculo" ReturnType="Collection(AgenciaTransitoModel.sp_multasVehiculo_Result)">
+            <Parameter Name="patente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NOMBREAGENTE" ReturnType="Collection(String)">
+            <Parameter Name="IDAGENTE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_procesarPagos" />
+          <FunctionImport Name="SP_procesarPagos2" />
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SALUDITO" />
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_multasVehiculo_Result">
+          <Property Type="DateTime" Name="FechaHora" Nullable="false" Precision="23" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="monto" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="9" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AgenciaTransitoModelStoreContainer" CdmEntityContainer="AgenciaTransitoEntities">
+          <EntitySetMapping Name="Agentes">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.Agentes">
+              <MappingFragment StoreEntitySet="Agentes">
+                <ScalarProperty Name="IdAgente" ColumnName="IdAgente" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidades">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.Localidades">
+              <MappingFragment StoreEntitySet="Localidades">
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MediosPago">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.MediosPago">
+              <MappingFragment StoreEntitySet="MediosPago">
+                <ScalarProperty Name="IDMedioPago" ColumnName="IDMedioPago" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="MedioPagoElectronico" ColumnName="MedioPagoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Multas">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.Multas">
+              <MappingFragment StoreEntitySet="Multas">
+                <ScalarProperty Name="IdMulta" ColumnName="IdMulta" />
+                <ScalarProperty Name="IdTipoInfraccion" ColumnName="IdTipoInfraccion" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="IdAgente" ColumnName="IdAgente" />
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Pagada" ColumnName="Pagada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.Pagos">
+              <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="IDPago" ColumnName="IDPago" />
+                <ScalarProperty Name="IDMulta" ColumnName="IDMulta" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDMedioPago" ColumnName="IDMedioPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoInfracciones">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.TipoInfracciones">
+              <MappingFragment StoreEntitySet="TipoInfracciones">
+                <ScalarProperty Name="IdTipoInfraccion" ColumnName="IdTipoInfraccion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ImporteReferencia" ColumnName="ImporteReferencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_multass">
+            <EntityTypeMapping TypeName="AgenciaTransitoModel.VW_multass">
+              <MappingFragment StoreEntitySet="VW_multass">
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="antiguedad" ColumnName="antiguedad" />
+                <ScalarProperty Name="APELLIDO_AGENTE" ColumnName="APELLIDO_AGENTE" />
+                <ScalarProperty Name="NOMBRES_AGENTE" ColumnName="NOMBRES_AGENTE" />
+                <ScalarProperty Name="LOCALIDAD" ColumnName="LOCALIDAD" />
+                <ScalarProperty Name="patente" ColumnName="patente" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_agregarMulta" FunctionName="AgenciaTransitoModel.Store.sp_agregarMulta" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AgenciaTransitoModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AgenciaTransitoModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="SP_descalificar" FunctionName="AgenciaTransitoModel.Store.SP_descalificar" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AgenciaTransitoModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AgenciaTransitoModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgenciaTransitoModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AgenciaTransitoModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgenciaTransitoModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_multasVehiculo" FunctionName="AgenciaTransitoModel.Store.sp_multasVehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgenciaTransitoModel.sp_multasVehiculo_Result">
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NOMBREAGENTE" FunctionName="AgenciaTransitoModel.Store.SP_NOMBREAGENTE" />
+          <FunctionImportMapping FunctionImportName="SP_procesarPagos" FunctionName="AgenciaTransitoModel.Store.SP_procesarPagos" />
+          <FunctionImportMapping FunctionImportName="SP_procesarPagos2" FunctionName="AgenciaTransitoModel.Store.SP_procesarPagos2" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AgenciaTransitoModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="SP_SALUDITO" FunctionName="AgenciaTransitoModel.Store.SP_SALUDITO" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AgenciaTransitoModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

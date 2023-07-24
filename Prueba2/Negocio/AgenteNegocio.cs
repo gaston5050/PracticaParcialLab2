@@ -37,8 +37,8 @@ namespace Negocio
 
 
 
-
-
+                acceso.CerrarConexion();
+               
             return listado;
             }
             catch (Exception ex)
