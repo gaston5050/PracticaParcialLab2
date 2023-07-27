@@ -125,7 +125,11 @@ namespace AccesoDatos
         */
 
 
-
+        public void setearSP (string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;   
+        }
 
     }
 }

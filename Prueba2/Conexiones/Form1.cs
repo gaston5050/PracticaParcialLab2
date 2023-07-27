@@ -25,7 +25,11 @@ namespace Conexiones
             AgenteNegocio negocio = new AgenteNegocio();
             dgvAgentes.DataSource = negocio.listar();
 
+            ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio(); 
 
+            cboProvincias.DataSource = provinciaNegocio.listar();
+          //  cboProvincias.ValueMember = "idProvincia";
+            cboProvincias.DisplayMember = "Provincia";
 
         }
 
@@ -42,5 +46,17 @@ namespace Conexiones
 
 
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+
+            
+          
+
+
+
+        }
+
     }
 }
