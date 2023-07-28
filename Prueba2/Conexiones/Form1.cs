@@ -43,7 +43,7 @@ namespace Conexiones
             reg.ejecutarAccion();
              reg.CerrarConexion();
 
-
+            c
 
         }
 
