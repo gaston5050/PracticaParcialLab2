@@ -15,9 +15,9 @@ namespace Negocio
 {
     public class AgenteNegocio
     {
-        public List<Agente> listar() { 
-          List<Agente> listado = new List<Agente>();
-          AccesoDatosManager acceso = new AccesoDatosManager();
+        public List<Agente> listar() {
+            List<Agente> listado = new List<Agente>();
+            AccesoDatosManager acceso = new AccesoDatosManager();
             try
             {
                 acceso.setConsulta("select idagente, nombres from agentes");
@@ -38,14 +38,29 @@ namespace Negocio
 
 
                 acceso.CerrarConexion();
-               
-            return listado;
+
+                return listado;
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+
+
+
+        }
+
+
+        public void agregar(Agente nuevo)
+        {
+            AccesoDatosManager acceso = new AccesoDatosManager();
+
+
+            acceso.setearSP()
+
+
+
 
 
 

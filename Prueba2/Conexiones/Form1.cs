@@ -15,6 +15,9 @@ namespace Conexiones
 {
     public partial class Form1 : Form
     {
+
+        Agente agente = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,8 +31,8 @@ namespace Conexiones
             ProvinciaNegocio provinciaNegocio = new ProvinciaNegocio(); 
 
             cboProvincias.DataSource = provinciaNegocio.listar();
-          //  cboProvincias.ValueMember = "idProvincia";
-            cboProvincias.DisplayMember = "Provincia";
+            cboProvincias.ValueMember = "idProvincia";
+            cboProvincias.DisplayMember = "NombreProvincia";
 
         }
 
@@ -43,13 +46,12 @@ namespace Conexiones
             reg.ejecutarAccion();
              reg.CerrarConexion();
 
-            c
+            
 
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
 
             
           
